@@ -1,4 +1,81 @@
-<canvas id="canvas"></div>
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="canonical" href="https://codepen.io/anon/pen/aqYoqe">
+    <link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+    <script src="//static.codepen.io/assets/editor/live/css_live_reload_init-890dc39bb89183d4642d58b1ae5376a0193342f9aed88ea04330dc14c8d52f55.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <canvas id="canvas"></div>
+    <script>
+    
+    'use strict';
+
+// Create program
+const canvas = document.getElementById("canvas");
+const gl = canvas.getContext('webgl');
+const program = webglUtils.createProgramFromScripts(gl, ['vertex-shader', 'fragment-shader']);
+
+// Create and initialize buffer
+const geometryBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, geometryBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+  -1.0, -1.0,
+   1.0, -1.0,
+  -1.0,  1.0,
+   1.0,  1.0
+]), gl.STATIC_DRAW);
+
+// Set up attributes and uniforms
+const attributes = {
+  position: gl.getAttribLocation(program, 'a_position')
+};
+
+const uniforms = {
+  resolution: gl.getUniformLocation(program, 'u_resolution'),
+  millis: gl.getUniformLocation(program, 'u_millis')
+};
+
+// Set WebGL program here (we have only one)
+gl.useProgram(program);
+
+// Setup canvas
+window.onresize = resize;
+resize();
+
+// Start rendering
+requestAnimationFrame(draw);
+
+// Resize canvas and viewport
+function resize () {
+  webglUtils.resizeCanvasToDisplaySize(gl.canvas);
+  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+}
+
+// Draw frame
+function draw (now) {
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.bindBuffer(gl.ARRAY_BUFFER, geometryBuffer);
+
+  gl.enableVertexAttribArray(attributes.position);
+  gl.vertexAttribPointer(attributes.position, 2, gl.FLOAT, false, 0, 0);
+  gl.uniform2f(uniforms.resolution, window.innerWidth, window.innerHeight);
+  gl.uniform1f(uniforms.millis, now);
+
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+  requestAnimationFrame(draw);
+}
+
+    
+    </script>
 <script id="vertex-shader" type="x-shader/x-vertex">
   attribute vec2 a_position;
 
@@ -69,3 +146,6 @@
     gl_FragColor = vec4(col, 1.0);
   }
 </script>
+
+</body>
+</html>
