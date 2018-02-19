@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            var $preloader = $('#p_prldr'),
+                $svg_anm = $preloader.find('.svg_anm');
+            $svg_anm.fadeOut();
+            $preloader.delay(0).fadeOut('slow');
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div id="p_prldr">
+        <div id="loading">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+                    <div class="object"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
