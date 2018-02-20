@@ -1,0 +1,37 @@
+div {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+div:before, div:after {
+  content: '';
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+}
+
+/*
+* BACKGROUNDS
+* 
+* A list of layers on the background to keep track of which is which.
+* The first background is always on top.
+* 
+* 1. white center cirlce
+* 2. green circle at center right
+* 3. blue bottom left
+* 4. purple bottom right
+* 5. purple - pink- orange background
+*
+*/
+body {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), radial-gradient(ellipse at 70% 60%, #c3e060 0%, rgba(195, 224, 96, 0) 30%), radial-gradient(ellipse at bottom left, #00a3cb 0%, rgba(0, 163, 203, 0) 70%), linear-gradient(135deg, rgba(18, 46, 119, 0) 0%, rgba(18, 46, 119, 0) 75%, #122e77 100%), linear-gradient(to right, #625793 0%, #d55d64 17%, #e49129 74%, #c0671c 100%);
+  background-blend-mode: screen, hue, color, overlay, normal;
+}
