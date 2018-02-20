@@ -1,0 +1,139 @@
+/**
+ * -------------------------------------------------------
+ * Word by Word Unmasking Animation
+ * -------------------------------------------------------
+ *
+ * Text animation effect to slide up and unmask each word.
+ * Type in the input to see new copy and animation.
+ *
+ */
+
+function spanifyWithDelay(string) {
+    // so this just adds a bunch of spans with a
+    // delay necessary for the animation effect.
+    
+    const delay = 0.04;
+
+    return string
+        .trim()
+        .split(' ')
+        .map((word, idx) => (
+            `<span>
+                <span style="transition-delay: ${idx * delay}s">
+                    ${word}
+                </span>
+            </span>`
+        ))
+        .reduce((acc, val) => (acc + val), '');
+}
+    
+class Title extends React.Component {
+    state = {
+        animate: false,
+    };
+    
+    componentDidMount() {
+        // this just add the class to trigger the animation
+        // ideally this would be in a transition group
+        // or use some other way to trigger the class.
+        
+        setTimeout(() => {
+            this.setState(() => ({
+                animate: true,
+            }));
+        }, 500)
+    }  
+        
+    render() {
+        const { title } = this.props;
+        const { animate } = this.state;
+        
+        // NOTE: Class "animate" triggers the animation
+        // when the "animate" state it true.
+        return (
+            <h1
+                className={classNames('title', { animate })}
+                dangerouslySetInnerHTML={{ __html: spanifyWithDelay(title) }}
+            />
+        );
+    }
+}
+    
+class Input extends React.Component {
+    render() {
+        return (
+            <input
+                className="input"
+                type="text"
+                onChange={this.props.onChange}
+                placeholder="Type Here"
+            />
+        );
+    }    
+}
+    
+class App extends React.Component {
+    state = {
+        value: 'Effect For Word By Word Unmasking Animation',
+    };
+        
+    handleChange = ({currentTarget}) => {
+        this.setState({
+            value: currentTarget.value,
+        });
+    };
+    
+    render() {
+        return (
+            <main>
+                <Input onChange={this.handleChange} />
+                <Title key={this.state.value} title={this.state.value} />
+            </main>
+        );
+    }
+}
+
+const run = () => {
+    const root = document.getElementById('root');
+    
+    ReactDOM.render(
+        <App />,
+        root
+    );
+}
+
+run();
+
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+function classNames () {
+    var classes = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        if (!arg) continue;
+
+        var argType = typeof arg;
+
+        if (argType === 'string' || argType === 'number') {
+            classes.push(arg);
+        } else if (Array.isArray(arg) && arg.length) {
+            var inner = classNames.apply(null, arg);
+            if (inner) {
+                classes.push(inner);
+            }
+        } else if (argType === 'object') {
+            for (var key in arg) {
+                if (hasOwnProperty.call(arg, key) && arg[key]) {
+                    classes.push(key);
+                }
+            }
+        }
+    }
+
+    return classes.join(' ');
+}

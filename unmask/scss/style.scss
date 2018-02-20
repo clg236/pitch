@@ -1,0 +1,91 @@
+html, body {
+    min-height: 100%;
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+main {
+    padding: 0 2rem;
+    position: relative;
+    background-color: #eeeeee;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at 0% 100%, rgba(#ec38bc, 0.6), rgba(#ec38bc, 0.1) 75%),
+                radial-gradient(ellipse at 100% 0%, rgba(#1CD8D2, 0.7), rgba(#7303c0, 0.1) 75%),
+                linear-gradient(#0b8793, #0099F7);
+}
+
+.input {
+    position: absolute;
+    z-index: 1;
+    padding: 0.8rem 1rem;
+    top: 2rem;
+    left: 50%;
+    margin-left: -15%;
+    width: 30%;
+    font-size: 18px;
+    font-weight: 100;
+    color: #333;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    transition: color 0.3s, background 0.3s;
+    background: linear-gradient(90deg, rgba(white, 0.15), rgba(white, 0.1));
+    
+    &::placeholder {
+        color: rgba(white, 0.6);
+    }
+    
+    &:focus {
+        color: white;
+        background: linear-gradient(90deg, rgba(black, 0.25), rgba(black, 0.2));
+        
+        &::placeholder {
+            color: rgba(black, 0.6);
+        }
+    }
+    
+    
+}
+
+$time: 0.9s;
+$ease: cubic-bezier(0.23, 1, 0.32, 1);
+
+.title {
+    font-family: 'futura-pt', serif;
+    font-weight: 400;
+    font-size: 14vmin;
+    text-rendering: optimizeLegibility;
+    color: white;
+    line-height: 1.15;
+    transition: opacity $time $ease;
+    opacity: 0;
+
+    > span {
+        position: relative;
+        padding: 0 0.05em; // prevents some clipping issues due to the font bounds
+        display: inline-block;
+        margin-right: 0.15em;
+        margin-top: -0.2em;
+        margin-bottom: -0.2em;
+        overflow: hidden;
+
+        span {
+            display: block;
+            transition: transform $time $ease;
+            transform: translateY(100%);
+        }
+    }
+}
+
+.animate {
+    opacity: 1;
+    > span {
+        span {
+            transform: translateY(0%);
+        }
+    }
+}

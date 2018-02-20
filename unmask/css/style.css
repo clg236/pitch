@@ -1,0 +1,111 @@
+html, body {
+  min-height: 100%;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+main {
+  padding: 0 2rem;
+  position: relative;
+  background-color: #eeeeee;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at 0% 100%, rgba(236, 56, 188, 0.6), rgba(236, 56, 188, 0.1) 75%), radial-gradient(ellipse at 100% 0%, rgba(28, 216, 210, 0.7), rgba(115, 3, 192, 0.1) 75%), -webkit-gradient(linear, left top, left bottom, from(#0b8793), to(#0099F7));
+  background: radial-gradient(ellipse at 0% 100%, rgba(236, 56, 188, 0.6), rgba(236, 56, 188, 0.1) 75%), radial-gradient(ellipse at 100% 0%, rgba(28, 216, 210, 0.7), rgba(115, 3, 192, 0.1) 75%), linear-gradient(#0b8793, #0099F7);
+}
+
+.input {
+  position: absolute;
+  z-index: 1;
+  padding: 0.8rem 1rem;
+  top: 2rem;
+  left: 50%;
+  margin-left: -15%;
+  width: 30%;
+  font-size: 18px;
+  font-weight: 100;
+  color: #333;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  -webkit-transition: color 0.3s, background 0.3s;
+  transition: color 0.3s, background 0.3s;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.15)), to(rgba(255, 255, 255, 0.1)));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+}
+.input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.input:focus {
+  color: white;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.2)));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.2));
+}
+.input:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+.input:focus:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+.input:focus::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+.input:focus::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.title {
+  font-family: 'futura-pt', serif;
+  font-weight: 400;
+  font-size: 14vmin;
+  text-rendering: optimizeLegibility;
+  color: white;
+  line-height: 1.15;
+  -webkit-transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0;
+}
+.title > span {
+  position: relative;
+  padding: 0 0.05em;
+  display: inline-block;
+  margin-right: 0.15em;
+  margin-top: -0.2em;
+  margin-bottom: -0.2em;
+  overflow: hidden;
+}
+.title > span span {
+  display: block;
+  -webkit-transition: -webkit-transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: -webkit-transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.animate {
+  opacity: 1;
+}
+.animate > span span {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
