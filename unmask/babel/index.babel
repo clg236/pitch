@@ -59,18 +59,6 @@ class Title extends React.Component {
     }
 }
     
-class Input extends React.Component {
-    render() {
-        return (
-            <input
-                className="input"
-                type="text"
-                onChange={this.props.onChange}
-                placeholder="Type Here"
-            />
-        );
-    }    
-}
     
 class App extends React.Component {
     state = {
